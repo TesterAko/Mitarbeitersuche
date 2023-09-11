@@ -1,0 +1,300 @@
+[{"ID": 1,
+    "Name": "Max Mustermann",
+    "Alter": 32,
+    "Gehalt": 55000.0
+  },
+  {
+    "ID": 2,
+    "Name": "Maria Musterfrau",
+    "Alter": 28,
+    "Gehalt": 60000.0
+  },
+  {
+    "ID": 3,
+    "Name": "Luis Lehmann",
+    "Alter": 45,
+    "Gehalt": 75000.0
+  },
+  {
+    "ID": 4,
+    "Name": "Anna Bauer",
+    "Alter": 39,
+    "Gehalt": 62000.0
+  },
+  {
+    "ID": 5,
+    "Name": "David Schmidt",
+    "Alter": 28,
+    "Gehalt": 58000.0
+  },
+  {
+    "ID": 6,
+    "Name": "Laura Hoffmann",
+    "Alter": 35,
+    "Gehalt": 65000.0
+  },
+  {
+    "ID": 7,
+    "Name": "Michael Wagner",
+    "Alter": 42,
+    "Gehalt": 72000.0
+  },
+  {
+    "ID": 8,
+    "Name": "Sophie Klein",
+    "Alter": 29,
+    "Gehalt": 57000.0
+  },
+  {
+    "ID": 9,
+    "Name": "Tom Fischer",
+    "Alter": 37,
+    "Gehalt": 68000.0
+  },
+  {
+    "ID": 10,
+    "Name": "Emma Müller",
+    "Alter": 31,
+    "Gehalt": 61000.0
+  },
+  {
+    "ID": 11,
+    "Name": "Liam Maier",
+    "Alter": 34,
+    "Gehalt": 70000.0
+  },
+  {
+    "ID": 12,
+    "Name": "Olivia Keller",
+    "Alter": 40,
+    "Gehalt": 73000.0
+  },
+  {
+    "ID": 13,
+    "Name": "Noah Huber",
+    "Alter": 26,
+    "Gehalt": 55000.0
+  },
+  {
+    "ID": 14,
+    "Name": "Emma Becker",
+    "Alter": 47,
+    "Gehalt": 80000.0
+  },
+  {
+    "ID": 15,
+    "Name": "Liam Wagner",
+    "Alter": 29,
+    "Gehalt": 57000.0
+  },
+  {
+    "ID": 16,
+    "Name": "Olivia Schmitt",
+    "Alter": 36,
+    "Gehalt": 66000.0
+  },
+  {
+    "ID": 17,
+    "Name": "Noah Schulz",
+    "Alter": 44,
+    "Gehalt": 74000.0
+  },
+  {
+    "ID": 18,
+    "Name": "Ava Schäfer",
+    "Alter": 33,
+    "Gehalt": 69000.0
+  },
+  {
+    "ID": 19,
+    "Name": "Isabella Herrmann",
+    "Alter": 41,
+    "Gehalt": 76000.0
+  },
+  {
+    "ID": 20,
+    "Name": "Sophia Maier",
+    "Alter": 27,
+    "Gehalt": 56000.0
+  },
+  {
+    "ID": 21,
+    "Name": "Mia Vogel",
+    "Alter": 38,
+    "Gehalt": 67000.0
+  },
+  {
+    "ID": 22,
+    "Name": "Liam Bauer",
+    "Alter": 30,
+    "Gehalt": 59000.0
+  },
+  {
+    "ID": 23,
+    "Name": "Olivia Schulz",
+    "Alter": 46,
+    "Gehalt": 78000.0
+  },
+  {
+    "ID": 24,
+    "Name": "Lucas Huber",
+    "Alter": 32,
+    "Gehalt": 63000.0
+  },
+  {
+    "ID": 25,
+    "Name": "Mason Meier",
+    "Alter": 25,
+    "Gehalt": 54000.0
+  },
+  {
+    "ID": 26,
+    "Name": "Ethan Klein",
+    "Alter": 43,
+    "Gehalt": 71000.0
+  },
+  {
+    "ID": 27,
+    "Name": "Oliver Fischer",
+    "Alter": 35,
+    "Gehalt": 64000.0
+  },
+  {
+    "ID": 28,
+    "Name": "Emma Schmidt",
+    "Alter": 37,
+    "Gehalt": 68000.0
+  },
+  {
+    "ID": 29,
+    "Name": "Liam Schulz",
+    "Alter": 28,
+    "Gehalt": 58000.0
+  },
+  {
+    "ID": 30,
+    "Name": "Ava Maier",
+    "Alter": 38,
+    "Gehalt": 67000.0
+  },
+  {
+    "ID": 31,
+    "Name": "Sophia Schulz",
+    "Alter": 45,
+    "Gehalt": 75000.0
+  },
+  {
+    "ID": 32,
+    "Name": "Mia Keller",
+    "Alter": 29,
+    "Gehalt": 57000.0
+  },
+  {
+    "ID": 33,
+    "Name": "Jackson Bauer",
+    "Alter": 31,
+    "Gehalt": 61000.0
+  },
+  {
+    "ID": 34,
+    "Name": "Aiden Vogel",
+    "Alter": 42,
+    "Gehalt": 72000.0
+  },
+  {
+    "ID": 35,
+    "Name": "Olivia Wagner",
+    "Alter": 36,
+    "Gehalt": 66000.0
+  },
+  {
+    "ID": 36,
+    "Name": "Lucas Klein",
+    "Alter": 26,
+    "Gehalt": 55000.0
+  },
+  {
+    "ID": 37,
+    "Name": "Sophia Maier",
+    "Alter": 39,
+    "Gehalt": 62000.0
+  },
+  {
+    "ID": 38,
+    "Name": "Mason Lehmann",
+    "Alter": 47,
+    "Gehalt": 80000.0
+  },
+  {
+    "ID": 39,
+    "Name": "Ethan Huber",
+    "Alter": 30,
+    "Gehalt": 59000.0
+  },
+  {
+    "ID": 40,
+    "Name": "Harper Meier",
+    "Alter": 37,
+    "Gehalt": 68000.0
+  },
+  {
+    "ID": 41,
+    "Name": "Liam Becker",
+    "Alter": 34,
+    "Gehalt": 70000.0
+  },
+  {
+    "ID": 42,
+    "Name": "Elijah Herrmann",
+    "Alter": 44,
+    "Gehalt": 74000.0
+  },
+  {
+    "ID": 43,
+    "Name": "Grace Schulz",
+    "Alter": 33,
+    "Gehalt": 69000.0
+  },
+  {
+    "ID": 44,
+    "Name": "Sofia Schäfer",
+    "Alter": 40,
+    "Gehalt": 73000.0
+  },
+  {
+    "ID": 45,
+    "Name": "Mia Klein",
+    "Alter": 31,
+    "Gehalt": 61000.0
+  },
+  {
+    "ID": 46,
+    "Name": "Liam Wagner",
+    "Alter": 45,
+    "Gehalt": 75000.0
+  },
+  {
+    "ID": 47,
+    "Name": "Sophia Becker",
+    "Alter": 27,
+    "Gehalt": 56000.0
+  },
+  {
+    "ID": 48,
+    "Name": "Harper Schulz",
+    "Alter": 46,
+    "Gehalt": 78000.0
+  },
+  {
+    "ID": 49,
+    "Name": "Lucas Huber",
+    "Alter": 35,
+    "Gehalt": 65000.0
+  },
+  {
+    "ID": 50,
+    "Name": "Ethan Maier",
+    "Alter": 29,
+    "Gehalt": 57000.0
+  }
+]
