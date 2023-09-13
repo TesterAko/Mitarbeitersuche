@@ -2,37 +2,49 @@ package org.example;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException {
         logIn();
         boolean logIn = true;
         if (logIn == true)
             employeeSearch(args);
     }
 
-    public static void logIn() throws IOException, ParseException {
-        FileReader fileReader = new FileReader("src/main/resources/admin.json");
-        JSONParser jsonParser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) jsonParser.parse(fileReader);
-        Scanner userInput = new Scanner(System.in);
+    public static void logIn() throws IOException {//implementierung log in methode
+        FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
+        Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
+        StringBuffer jsonContent = new StringBuffer();//StringBuffer erstellen aus jsonContent
+        while (scanner.hasNext()) {//solange scanner einen nächsten String hat
+            jsonContent.append(scanner.nextLine());//wird der String in jsonContent hinzugefögt
+        }
 
+        Scanner userInput = new Scanner(System.in);//Scanner für Eingabe
 
-
-        System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
-        System.out.println("Log In");
+        System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");//Intro Menü
+        System.out.println("Log In");//Log In
 
         System.out.println("Benutzername: ");
-        String username = userInput.next();
+        String benutzername = userInput.next();//Eingabe benutzername
 
+        System.out.println("Passwort: ");
+        int passwort = Integer.parseInt(userInput.next());//Eingabe passwort
 
+        JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
+        if (json.has("Benutzername") && json.has("Passwort")) {
+            if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {
+                System.out.println("Sie sind eingeloggt!");
+            } else {
+                System.out.println("Falsche Eingabe");
+            }
+        }
     }
 
 
