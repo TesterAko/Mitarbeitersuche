@@ -6,12 +6,37 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
+        logIn();
+        boolean logIn = true;
+        if (logIn == true)
+            employeeSearch(args);
+    }
+
+    public static void logIn() throws IOException, ParseException {
+        FileReader fileReader = new FileReader("src/main/resources/admin.json");
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(fileReader);
+        Scanner userInput = new Scanner(System.in);
+
+
+
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
+        System.out.println("Log In");
+
+        System.out.println("Benutzername: ");
+        String username = userInput.next();
+
+
+    }
+
+
+    public static void employeeSearch(String[] args) throws IOException {
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie JA ein");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie DELETE ein");
         System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
@@ -101,7 +126,7 @@ public class Main {
             //erstellt einen JSONObject aus dem JSON Array
             if (empObject.has("Name")) {//wenn das JSONObject das Attribut "Name" hat
                 if (empObject.getString("Name").equals(input)) {//wenn das Attribut "Name" den Input entspricht
-                    indexToRemove = i;//löscht das Mitarbeiter aus dem Array
+                    indexToRemove = i;//löscht der Mitarbeiter aus dem Array
                     break;
                 }
             }
