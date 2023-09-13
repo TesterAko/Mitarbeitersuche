@@ -10,12 +10,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-
-    public static void main(String[] args) throws IOException {
-        logIn();
-        boolean logIn = true;
-        if (logIn == true)
-            employeeSearch(args);
+    public static void intro () {
+        System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");//Intro Menü
     }
 
     public static void logIn() throws IOException {//implementierung log in methode
@@ -28,7 +24,6 @@ public class Main {
 
         Scanner userInput = new Scanner(System.in);//Scanner für Eingabe
 
-        System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");//Intro Menü
         System.out.println("Log In");//Log In
 
         System.out.println("Benutzername: ");
@@ -38,17 +33,25 @@ public class Main {
         int passwort = Integer.parseInt(userInput.next());//Eingabe passwort
 
         JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
-        if (json.has("Benutzername") && json.has("Passwort")) {
-            if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {
+        if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
+            if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {//wenn die Eingabe richtig ist
                 System.out.println("Sie sind eingeloggt!");
             } else {
-                System.out.println("Falsche Eingabe");
+                System.out.println("Falsche Eingabe, probieren Sie es erneut!");
+                logIn();
             }
         }
     }
 
+    //throws IOException-Klausel in einer Methodendeklaration in Java bedeutet, dass die Methode möglicherweise eine IOException auslösen kann
+    // ist eine Java-Ausnahme (Exception) und steht für "Input/Output Exception". Sie tritt auf, wenn ein Fehler beim Lesen oder Schreiben von Dateien oder beim Arbeiten mit Ein- oder Ausgabeoperationen auftritt
+    //throws IOException: Wenn eine Methode mit throws IOException deklariert ist, signalisiert sie, dass sie eine IOException auslösen kann,
+    // aber sie behandelt den Fehler nicht selbst. Stattdessen wird der Fehler an die Methode weitergegeben, die diese Methode aufruft.
+    // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
 
-    public static void employeeSearch(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
+        intro();
+        logIn();
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie JA ein");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie DELETE ein");
         System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
