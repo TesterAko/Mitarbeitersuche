@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void intro () {
-        System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");//Intro Menü
+        System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
+        //intro Menü
     }
 
     public static void logIn() throws IOException {//implementierung log in methode
@@ -50,8 +51,8 @@ public class Main {
     // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
 
     public static void main(String[] args) throws IOException {
-        intro();
-        logIn();
+        intro();//Intro ausführen
+        logIn();//log in ausführen
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie JA ein");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie DELETE ein");
         System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
