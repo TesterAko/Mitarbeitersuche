@@ -2,7 +2,6 @@ package org.example;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,6 +9,47 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
+
+    //throws IOException-Klausel in einer Methodendeklaration in Java bedeutet, dass die Methode möglicherweise eine IOException auslösen kann
+    // ist eine Java-Ausnahme (Exception) und steht für "Input/Output Exception". Sie tritt auf, wenn ein Fehler beim Lesen oder Schreiben von Dateien oder beim Arbeiten mit Ein- oder Ausgabeoperationen auftritt
+    //throws IOException: Wenn eine Methode mit throws IOException deklariert ist, signalisiert sie, dass sie eine IOException auslösen kann,
+    // aber sie behandelt den Fehler nicht selbst. Stattdessen wird der Fehler an die Methode weitergegeben, die diese Methode aufruft.
+    // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
+
+    public static void main(String[] args) throws IOException {
+        intro();//Intro ausführen
+        logIn();//log in ausführen
+        System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie JA ein");
+        System.out.println("Wenn Sie einen Mitarbeiter löschen möchten, geben Sie DELETE ein");
+        System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
+
+        Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
+        boolean isRunning = true;//startet das Programmm solange true ist
+        while (isRunning) {
+            String option = scannerEmployeeSearch.nextLine().toUpperCase();//option ist die Eingabe des Benutzer
+            //scannerEmployeeSearch.nextLine() gibt die Eingabe des Benutzers wieder
+            //.toUpperCase() gibt die Eingabe in Großbuchstaben wieder
+            switch (option) {//option wird gestartet
+                case "JA"://wenn ja wird das employeeName gestartet
+                    System.out.println("Wie heißt der Mitarbeiter, der gesucht werden soll?");
+                    String employeeName = scannerEmployeeSearch.nextLine();
+                    searchEmployee(employeeName);//employeeName wird öffnet und gesucht
+                    break;
+                case "DELETE":
+                    System.out.println("Wie heißt der Mitarbeiter, der gelöscht werden soll?");
+                    String deleteEmployee = scannerEmployeeSearch.nextLine();
+                    deleteEmployee(deleteEmployee);
+                    break;
+                case "EXIT":
+                    System.out.println("Das Programm wird beendet.");
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Ungültige Eingabe. Bitte geben Sie 'JA' oder 'EXIT' ein.");
+            }
+        }
+        scannerEmployeeSearch.close();//Scanner wird geschlossen
+    }
     public static void intro () {
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
         //intro Menü
@@ -42,47 +82,6 @@ public class Main {
                 logIn();
             }
         }
-    }
-
-    //throws IOException-Klausel in einer Methodendeklaration in Java bedeutet, dass die Methode möglicherweise eine IOException auslösen kann
-    // ist eine Java-Ausnahme (Exception) und steht für "Input/Output Exception". Sie tritt auf, wenn ein Fehler beim Lesen oder Schreiben von Dateien oder beim Arbeiten mit Ein- oder Ausgabeoperationen auftritt
-    //throws IOException: Wenn eine Methode mit throws IOException deklariert ist, signalisiert sie, dass sie eine IOException auslösen kann,
-    // aber sie behandelt den Fehler nicht selbst. Stattdessen wird der Fehler an die Methode weitergegeben, die diese Methode aufruft.
-    // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
-
-    public static void main(String[] args) throws IOException {
-        intro();//Intro ausführen
-        logIn();//log in ausführen
-        System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie JA ein");
-        System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie DELETE ein");
-        System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
-
-        Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
-        boolean isRunning = true;//startet das Programmm solange true ist
-        while (isRunning) {
-            String option = scannerEmployeeSearch.nextLine().toUpperCase();//option ist die Eingabe des Benutzer
-            //scannerEmployeeSearch.nextLine() gibt die Eingabe des Benutzers wieder
-            //.toUpperCase() gibt die Eingabe in Großbuchstaben wieder
-            switch (option) {//option wird gestartet
-                case "JA"://wenn ja wird das employeeName gestartet
-                    System.out.println("Wie heißt der Mitarbeiter, der gesucht werden soll?");
-                    String employeeName = scannerEmployeeSearch.nextLine();
-                    searchEmployee(employeeName);//employeeName wird öffnet und gesucht
-                    break;
-                case "DELETE":
-                    System.out.println("Wie heißt der Mitarbeiter, der gelöscht werden soll?");
-                    String deleteEmployee = scannerEmployeeSearch.nextLine();
-                    deleteEmployee(deleteEmployee);
-                    break;
-                case "EXIT":
-                    System.out.println("Das Programm wird beendet.");
-                    isRunning = false;
-                    break;
-                default:
-                    System.out.println("Ungültige Eingabe. Bitte geben Sie 'JA' oder 'EXIT' ein.");
-            }
-        }
-        scannerEmployeeSearch.close();//Scanner wird geschlossen
     }
 
     public static void searchEmployee(String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
