@@ -130,7 +130,7 @@ public class Main {
         }
     }
 
-    public static void addEmployer() throws IOException {//hier weiterarbeiten!!!
+    public static void addEmployer() throws IOException {
         try {
             //hinzufügen Mitarbeiter erstellen Funktion
             FileReader fileReader = new FileReader("src/main/resources/employees.json");//lies die Json Datei ein
@@ -154,6 +154,8 @@ public class Main {
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
             String scannerEmployeeSearch;//Anfangen des Scanner-Objekts
 
+            //Schwachstelle nach Eingabe des Gehaltes lässt 3 Eingaben zu die schließlich ungültig sind
+            //^^gelöst durch Entfernung der Scannermethode vom Add Block im dem Menü
             // Erstellen des JSON-Objekts für den neuen Mitarbeiter
             JSONObject newEmployer = new JSONObject();//neue JSon  Objekt wird erstellt
             newEmployer.put("ID", jsonArray.length() + 1); // Hier kannst du eine eindeutige ID generieren
@@ -196,7 +198,7 @@ public class Main {
                 }
             }
         }//hier auch Schwachstelle nach löschung von Mitarbeitern, wenn nicht mehr vorhanden, dann lässt 2 Eingaben zu die schließlich ungÜltig sind
-        //gelöst^^
+        //gelöst^^ durch Implementierung der == -1 in der Schleife unten, also wenn Mitarbeiter schon entfernt wurde kann nicht zurückgeben werden
             if (indexToRemove != -1) {
                 //wenn indexToRemove nicht -1 ist, ist mitarbeiter noch da, kann gefunden werden
                 json.remove(indexToRemove);
