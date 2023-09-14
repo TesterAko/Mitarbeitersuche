@@ -160,11 +160,15 @@ public class Main {
             newEmployer.put("Name", name);//Name wird zugewiesen
             newEmployer.put("Alter", age);//Alter wird zugewiesen
             newEmployer.put("Gehalt", salary);//Gehalt wird zugewiesen
-
             jsonArray.put(newEmployer); // Hier wird der neue Mitarbeiter hinzugefügt
-            saveToJsonFile(jsonArray);
+            saveToJsonFile(jsonArray);//Überschreibt die Änderungen ins JSon datei
 
         } catch (Exception e) {
+            //Dies ist ein Teil einer Try-Catch-Struktur in Java, die verwendet wird, um Ausnahmen (Fehler) zu behandeln, die während der Ausführung des Codes auftreten können
+            //Exception ist die Oberklasse für alle Java-Ausnahmearten, daher kann sie verschiedene Arten von Fehlern abfangen
+            //Innerhalb des catch-Blocks wird diese Anweisung verwendet, um eine Fehlermeldung auf der Konsole auszugeben
+            //getMessage() ist eine Methode, die auf einer Ausnahme aufgerufen werden kann, um die Fehlermeldung oder den Grund für die Ausnahme abzurufen.
+            //Dies hilft dabei, Probleme zu identifizieren und zu debuggen, wenn sie auftreten.
             System.out.println("Fehler: " + e.getMessage());
         }
     }
