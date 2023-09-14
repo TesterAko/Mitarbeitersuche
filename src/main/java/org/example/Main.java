@@ -19,8 +19,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         intro();//Intro ausführen
         logIn();//log in ausführen
-        System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie JA ein");
+        System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie YES ein");
         System.out.println("Wenn Sie einen Mitarbeiter löschen möchten, geben Sie DELETE ein");
+        System.out.println("Wenn Sie einen Mitarbeiter hinzufügen möchten, geben Sie ADD ein");
         System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
 
         Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
@@ -30,7 +31,7 @@ public class Main {
             //scannerEmployeeSearch.nextLine() gibt die Eingabe des Benutzers wieder
             //.toUpperCase() gibt die Eingabe in Großbuchstaben wieder
             switch (option) {//option wird gestartet
-                case "JA"://wenn ja wird das employeeName gestartet
+                case "YES"://wenn ja wird das employeeName gestartet
                     System.out.println("Wie heißt der Mitarbeiter, der gesucht werden soll?");
                     String employeeName = scannerEmployeeSearch.nextLine();
                     searchEmployee(employeeName);//employeeName wird öffnet und gesucht
@@ -40,19 +41,26 @@ public class Main {
                     String deleteEmployee = scannerEmployeeSearch.nextLine();
                     deleteEmployee(deleteEmployee);
                     break;
+                case "ADD":
+                    System.out.println("Bitte geben Sie die Daten ein");
+                   addEmployer();
+                    String addEmployer = scannerEmployeeSearch.nextLine();
+                    break;
                 case "EXIT":
                     System.out.println("Das Programm wird beendet.");
                     isRunning = false;
                     break;
                 default:
-                    System.out.println("Ungültige Eingabe. Bitte geben Sie 'JA' oder 'EXIT' ein.");
+                    System.out.println("Ungültige Eingabe. Bitte geben Sie 'YES', 'ADD', 'DELETE' oder 'EXIT' ein.");
             }
         }
         scannerEmployeeSearch.close();//Scanner wird geschlossen
     }
-    public static void intro () {
+
+    public static void intro() {
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
         //intro Menü
+        System.out.println("Log In");//Log In
     }
 
     public static void logIn() throws IOException {//implementierung log in methode
@@ -65,13 +73,13 @@ public class Main {
 
         Scanner userInput = new Scanner(System.in);//Scanner für Eingabe
 
-        System.out.println("Log In");//Log In
+
 
         System.out.println("Benutzername: ");
-        String benutzername = userInput.next();//Eingabe benutzername
+        String benutzername = userInput.nextLine();//Eingabe benutzername
 
         System.out.println("Passwort: ");
-        int passwort = Integer.parseInt(userInput.next());//Eingabe passwort
+        int passwort = Integer.parseInt(userInput.nextLine());//Eingabe passwort
 
         JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
         if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
@@ -115,14 +123,58 @@ public class Main {
             //Euro Zeichen nicht innerhalb der Key Klammern hinzufügen!!   ^^
         }
         if (result != null) {//wenn result nicht null ist, gib es aus
-            System.out.println("Wollen Sie nochmal suchen? JA, DELETE oder EXIT");//frage ob  man noch weiter suchen will
+            System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");//frage ob  man noch weiter suchen will
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         } else {
             System.out.println("Mitarbeiter nicht gefunden");//info mitarbeiter nicht gefunden
-            System.out.println("Wollen Sie nochmal suchen? JA, DELETE oder EXIT");//info nochmal suchen?
+            System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");//info nochmal suchen?
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         }
     }
+
+    public static void addEmployer() throws IOException {//hier weiterarbeiten!!!
+        try {
+            //hinzufügen Mitarbeiter erstellen Funktion
+            FileReader fileReader = new FileReader("src/main/resources/employees.json");//lies die Json Datei ein
+            Scanner scanner = new Scanner(fileReader);//scannt die Json Datei ein
+            StringBuffer jsonContent = new StringBuffer();//erstellt einen StringBuffer zum JsonContent
+            while (scanner.hasNextLine()) {//solange es nächste Zeile gibt
+                jsonContent.append(scanner.nextLine());//speichert die Zeile in der StringBuffer
+            }
+
+            scanner.close();//schließt den Scanner
+            JSONArray jsonArray = new JSONArray(jsonContent.toString());//erstellt einen JSONArray aus dem StringBuffer
+            Scanner userInput = new Scanner(System.in);
+            System.out.println("Geben Sie den Namen des neuen Mitarbeiters ein:");
+            String name = userInput.nextLine();
+            System.out.println("Geben Sie das Alter des neuen Mitarbeiters ein:");
+            String age = String.valueOf(Integer.parseInt(userInput.nextLine()));
+            System.out.println("Geben Sie das Gehalt des neuen Mitarbeiters ein:");
+            String salary = String.valueOf(Double.parseDouble(userInput.nextLine()));
+
+            System.out.println("Mitarbeiter wurde hinzugefügt");//info Mitarbeiter wurde hinzugefögt;;
+            System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
+            String scannerEmployeeSearch = String.valueOf(userInput.nextLine());//Anfangen des Scanner-Objekts
+
+
+
+            // Erstellen des JSON-Objekts für den neuen Mitarbeiter
+            JSONObject newEmployer = new JSONObject();//neue JSon  Objekt wird erstellt
+            newEmployer.put("ID", jsonArray.length() + 1); // Hier kannst du eine eindeutige ID generieren
+            newEmployer.put("Name", name);//Name wird zugewiesen
+            newEmployer.put("Alter", age);//Alter wird zugewiesen
+            newEmployer.put("Gehalt", salary);//Gehalt wird zugewiesen
+//Schwachstelle hier nach Eingabe der Daten, lässt noch 3 Eingaben zu die schließlich ungültig sind
+
+            jsonArray.put(newEmployer); // Hier wird der neue Mitarbeiter hinzugefügt
+            saveToJsonFile(jsonArray);
+
+        } catch (Exception e) {
+            System.out.println("Fehler: " + e.getMessage());
+        }
+       // System.out.println("Mitarbeiter wurde hinzugefügt");//info Mitarbeiter wurde hinzugefügt;
+    }
+
     public static void deleteEmployee(String input) throws IOException {//implementierung Löschen Mitarbeiter
         FileReader fileReader = new FileReader("src/main/resources/employees.json");//lies die Json Datei ein
         Scanner scanner = new Scanner(fileReader);////scannt die Json Datei ein
@@ -145,7 +197,7 @@ public class Main {
                     break;
                 }
             }
-        }
+        }//hier auch Schwachstelle nach löschung von Mitarbeitern, wenn nicht mehr vorhanden, dann lässt 2 Eingaben zu die schließlich ungÜltig sind
             if (indexToRemove != -1) {
                 //wenn indexToRemove nicht -1 ist, entfernt das Mitarbeiter aus dem Array
                 json.remove(indexToRemove);
@@ -153,7 +205,7 @@ public class Main {
                 saveToJsonFile(json);
                 //saveToJsonFile wird aufgerufen Methode wird unten ausgeführt
                 System.out.println("Mitarbeiter wurde gelöscht");
-                System.out.println("Wollen Sie nochmal suchen? JA, DELETE oder EXIT");
+                System.out.println("Wollen Sie nochmal suchen? YES, DELETE oder EXIT");
                 Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
             }
         }
