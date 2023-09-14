@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         intro();//Intro ausführen
         logIn();//log in ausführen
+        System.out.println("Hauptmenü");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie YES ein");
         System.out.println("Wenn Sie einen Mitarbeiter löschen möchten, geben Sie DELETE ein");
         System.out.println("Wenn Sie einen Mitarbeiter hinzufügen möchten, geben Sie ADD ein");
@@ -44,7 +45,6 @@ public class Main {
                 case "ADD":
                     System.out.println("Bitte geben Sie die Daten ein");
                    addEmployer();
-                    String addEmployer = scannerEmployeeSearch.nextLine();
                     break;
                 case "EXIT":
                     System.out.println("Das Programm wird beendet.");
@@ -72,8 +72,6 @@ public class Main {
         }
 
         Scanner userInput = new Scanner(System.in);//Scanner für Eingabe
-
-
 
         System.out.println("Benutzername: ");
         String benutzername = userInput.nextLine();//Eingabe benutzername
@@ -146,15 +144,15 @@ public class Main {
             JSONArray jsonArray = new JSONArray(jsonContent.toString());//erstellt einen JSONArray aus dem StringBuffer
             Scanner userInput = new Scanner(System.in);
             System.out.println("Geben Sie den Namen des neuen Mitarbeiters ein:");
-            String name = userInput.nextLine();
+            String name= userInput.nextLine();
             System.out.println("Geben Sie das Alter des neuen Mitarbeiters ein:");
             String age = String.valueOf(Integer.parseInt(userInput.nextLine()));
             System.out.println("Geben Sie das Gehalt des neuen Mitarbeiters ein:");
             String salary = String.valueOf(Double.parseDouble(userInput.nextLine()));
 
-            System.out.println("Mitarbeiter wurde hinzugefügt");//info Mitarbeiter wurde hinzugefögt;;
+            System.out.println("Mitarbeiter wurde hinzugefügt");//info Mitarbeiter wurde hinzugefügt;;
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
-            String scannerEmployeeSearch = String.valueOf(userInput.nextLine());//Anfangen des Scanner-Objekts
+            String scannerEmployeeSearch;//Anfangen des Scanner-Objekts
 
 
 
@@ -164,7 +162,7 @@ public class Main {
             newEmployer.put("Name", name);//Name wird zugewiesen
             newEmployer.put("Alter", age);//Alter wird zugewiesen
             newEmployer.put("Gehalt", salary);//Gehalt wird zugewiesen
-//Schwachstelle hier nach Eingabe der Daten, lässt noch 3 Eingaben zu die schließlich ungültig sind
+
 
             jsonArray.put(newEmployer); // Hier wird der neue Mitarbeiter hinzugefügt
             saveToJsonFile(jsonArray);
@@ -205,7 +203,7 @@ public class Main {
                 saveToJsonFile(json);
                 //saveToJsonFile wird aufgerufen Methode wird unten ausgeführt
                 System.out.println("Mitarbeiter wurde gelöscht");
-                System.out.println("Wollen Sie nochmal suchen? YES, DELETE oder EXIT");
+                System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
                 Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
             }
         }
