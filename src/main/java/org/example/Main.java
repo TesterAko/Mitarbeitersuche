@@ -149,6 +149,10 @@ public class Main {
             String age = String.valueOf(Integer.parseInt(userInput.nextLine()));
             System.out.println("Geben Sie das Gehalt des neuen Mitarbeiters ein:");
             String salary = String.valueOf(Double.parseDouble(userInput.nextLine()));
+            //Bei Parse wird die eingegebene Zeichenfolge in eine Ganzzahl (Integer, Double) umgewandelt.
+            //Hier wird die eingegebene Zeichenfolge in eine Ganzzahl (Integer) umgewandelt.
+            //String.valueOf(...):String.valueOf(...) ist eine Methode, die einen Wert (in diesem Fall eine Ganzzahl) in eine Zeichenfolge umwandelt.
+
 
             System.out.println("Mitarbeiter wurde hinzugefügt");//info Mitarbeiter wurde hinzugefügt;;
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
@@ -197,7 +201,8 @@ public class Main {
                     break;
                 }
             }
-        }//hier auch Schwachstelle nach löschung von Mitarbeitern, wenn nicht mehr vorhanden, dann lässt 2 Eingaben zu die schließlich ungÜltig sind
+        }
+        //hier auch Schwachstelle nach löschung von Mitarbeitern, wenn nicht mehr vorhanden, dann lässt 2 Eingaben zu die schließlich ungÜltig sind
         //gelöst^^ durch Implementierung der == -1 in der Schleife unten, also wenn Mitarbeiter schon entfernt wurde kann nicht zurückgeben werden
             if (indexToRemove != -1) {
                 //wenn indexToRemove nicht -1 ist, ist mitarbeiter noch da, kann gefunden werden
