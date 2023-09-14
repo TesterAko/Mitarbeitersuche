@@ -154,8 +154,6 @@ public class Main {
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
             String scannerEmployeeSearch;//Anfangen des Scanner-Objekts
 
-
-
             // Erstellen des JSON-Objekts für den neuen Mitarbeiter
             JSONObject newEmployer = new JSONObject();//neue JSon  Objekt wird erstellt
             newEmployer.put("ID", jsonArray.length() + 1); // Hier kannst du eine eindeutige ID generieren
@@ -163,14 +161,12 @@ public class Main {
             newEmployer.put("Alter", age);//Alter wird zugewiesen
             newEmployer.put("Gehalt", salary);//Gehalt wird zugewiesen
 
-
             jsonArray.put(newEmployer); // Hier wird der neue Mitarbeiter hinzugefügt
             saveToJsonFile(jsonArray);
 
         } catch (Exception e) {
             System.out.println("Fehler: " + e.getMessage());
         }
-       // System.out.println("Mitarbeiter wurde hinzugefügt");//info Mitarbeiter wurde hinzugefügt;
     }
 
     public static void deleteEmployee(String input) throws IOException {//implementierung Löschen Mitarbeiter
@@ -184,10 +180,10 @@ public class Main {
         JSONArray json = new JSONArray(jsonContent.toString());//JSON Array wird erstellt aus dem StringBuffer
         JSONObject result = null;//erstellt einen JSONObject und null ist das erste Mitarbeiter
 
-        int indexToRemove = -1;//Mitarbeiter der gelöscht werden soll wird gesucht
+        int indexToRemove = -1;//Mitarbeiter der gelöscht werden soll wird gesucht//indexToRemove wird -1
         for (int i = 0; i < json.length(); i++) {
             //int i = 0; solange i kleiner als die Länge des JSON Arrays ist,  wird i um 1 erhöht
-            JSONObject empObject = json.getJSONObject(i);
+            JSONObject empObject = json.getJSONObject(i);//json objekt ist i
             //erstellt einen JSONObject aus dem JSON Array
             if (empObject.has("Name")) {//wenn das JSONObject das Attribut "Name" hat
                 if (empObject.getString("Name").equals(input)) {//wenn das Attribut "Name" den Input entspricht
@@ -196,18 +192,26 @@ public class Main {
                 }
             }
         }//hier auch Schwachstelle nach löschung von Mitarbeitern, wenn nicht mehr vorhanden, dann lässt 2 Eingaben zu die schließlich ungÜltig sind
+        //gelöst^^
             if (indexToRemove != -1) {
-                //wenn indexToRemove nicht -1 ist, entfernt das Mitarbeiter aus dem Array
+                //wenn indexToRemove nicht -1 ist, ist mitarbeiter noch da, kann gefunden werden
                 json.remove(indexToRemove);
                 //remove entfernt das Mitarbeiter aus dem Array
                 saveToJsonFile(json);
                 //saveToJsonFile wird aufgerufen Methode wird unten ausgeführt
                 System.out.println("Mitarbeiter wurde gelöscht");
                 System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
-                Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
-            }
+                Scanner scannerEmployeeSearch = new Scanner(System.in);
+                //Hauptmenü wird neu gestartet
+            } if (indexToRemove == -1) {
+                //wenn indexToRemove -1 ist, wurde mitarbeiter schon entfernt kann nicht gefunden werden
+                System.out.println("Mitarbeiter nicht gefunden");
+            System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
+            Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
+        }
         }
     private static void saveToJsonFile(JSONArray json) throws IOException {
+        //Die throws IOException-Klausel zeigt an, dass möglicherweise Ausnahmen im Zusammenhang mit Ein- und Ausgabe auftreten können.
         //implementierung von saveToJson
         //aktualisiert die Daten von Json File
         FileWriter fileWriter = new FileWriter("src/main/resources/employees.json");
