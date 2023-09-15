@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+public class Main { //Hauptmenü
 
     //throws IOException-Klausel in einer Methodendeklaration in Java bedeutet, dass die Methode möglicherweise eine IOException auslösen kann
     // ist eine Java-Ausnahme (Exception) und steht für "Input/Output Exception". Sie tritt auf, wenn ein Fehler beim Lesen oder Schreiben von Dateien oder beim Arbeiten mit Ein- oder Ausgabeoperationen auftritt
@@ -56,13 +56,13 @@ public class Main {
         }
         scannerEmployeeSearch.close();//Scanner wird geschlossen
     }
-
+//Intro_______________________________________________________________________________________________________________________
     public static void intro() {
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
         //intro Menü
         System.out.println("Log In");//Log In
     }
-
+//Log In Funktion______________________________________________________________________________________________________________
     public static void logIn() throws IOException {//implementierung log in methode
         FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
         Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
@@ -90,7 +90,7 @@ public class Main {
             }
         }
     }
-
+//Mitarbeiter suchen Funktion____________________________________________________________________________________________
     public static void searchEmployee(String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
         //String input ist das Eingabefeld für den Namen des gesuchten Mitarbeiters
         //throws FileNotFoundException heißt es einen Fehler wenn die Datei nicht gefunden wird
@@ -130,7 +130,7 @@ public class Main {
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         }
     }
-
+//Mitarbeiter hinzufügen Funktion__________________________________________________________________________________________________
     public static void addEmployer() throws IOException {
         try {
             //hinzufügen Mitarbeiter erstellen Funktion
@@ -179,7 +179,7 @@ public class Main {
             System.out.println("Fehler: " + e.getMessage());
         }
     }
-
+    //delete Funktion _________________________________________________________________________________________________________
     public static void deleteEmployee(String input) throws IOException {//implementierung Löschen Mitarbeiter
         FileReader fileReader = new FileReader("src/main/resources/employees.json");//lies die Json Datei ein
         Scanner scanner = new Scanner(fileReader);////scannt die Json Datei ein
@@ -221,7 +221,8 @@ public class Main {
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
         }
-        }
+    }
+    //Json Überschreiben Funktion _________________________________________________________________________________________________________
     private static void saveToJsonFile(JSONArray json) throws IOException {
         //Die throws IOException-Klausel zeigt an, dass möglicherweise Ausnahmen im Zusammenhang mit Ein- und Ausgabe auftreten können.
         //implementierung von saveToJson
