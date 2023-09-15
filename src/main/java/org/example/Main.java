@@ -44,7 +44,7 @@ public class Main {
                     break;
                 case "ADD":
                     System.out.println("Bitte geben Sie die Daten ein");
-                   addEmployer();
+                    addEmployer();
                     break;
                 case "EXIT":
                     System.out.println("Das Programm wird beendet.");
@@ -79,13 +79,22 @@ public class Main {
         System.out.println("Passwort: ");
         int passwort = Integer.parseInt(userInput.nextLine());//Eingabe passwort
 
+        int maxAttempts = 3;
+        int attempts = 0;
+
+        //maximale Anzahl versuche implementieren!!!!"!
         JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
         if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
             if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {//wenn die Eingabe richtig ist
                 System.out.println("Sie sind eingeloggt!");
-            } else {
-                System.out.println("Falsche Eingabe, probieren Sie es erneut!");
-                logIn();
+            } else if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") != passwort) {//wenn die Eingabe falsch ist
+                System.out.println("Falsches Passwort!");
+                if (attempts < maxAttempts)
+                    logIn();
+                attempts++;
+            }
+            } else if (attempts >= maxAttempts) {
+                System.out.println("Ihr Account wurde gesperrt!");
             }
         }
     }
