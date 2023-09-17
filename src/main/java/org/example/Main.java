@@ -2,6 +2,7 @@ package org.example;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -67,30 +68,40 @@ public class Main { //Hauptmenü
         FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
         Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
         StringBuffer jsonContent = new StringBuffer();//StringBuffer erstellen aus jsonContent
+
         while (scanner.hasNext()) {//solange scanner einen nächsten String hat
             jsonContent.append(scanner.nextLine());//wird der String in jsonContent hinzugefögt
         }
 
-        Scanner userInput = new Scanner(System.in);//Scanner für Eingabe
-
-        System.out.println("Benutzername: ");
-        String benutzername = userInput.nextLine();//Eingabe benutzername
-
-        System.out.println("Passwort: ");
-        int passwort = Integer.parseInt(userInput.nextLine());//Eingabe passwort
-
-
         JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
-        if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
-            if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {//wenn die Eingabe richtig ist
-                System.out.println("Sie sind eingeloggt!");
-            } else if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") != passwort) {//wenn die Eingabe falsch ist
-                System.out.println("Falsches Passwort!");
-                logIn();
+        int maxAttempts = 3;//Maximale Anzahl an Passworteingaben festlegen !!!!
+        int attempts = 0;//Anzahl der Versuche
+        while (attempts < maxAttempts) {//solange die Anzahl der Versuche kleiner als maxAttempts ist
+            Scanner userInput = new Scanner(System.in);//Scanner för Eingabe
+            System.out.println("Benutzername: ");
+            String benutzername = userInput.nextLine();//Eingabe benutzername
+            System.out.println("Passwort: ");//Maximale Anzahl an Passworteingaben festlegen !!!!
+            int passwort = Integer.parseInt(userInput.nextLine());//Eingabe passwort
+
+            if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
+                if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {//wenn die Eingabe richtig ist
+                    System.out.println("Sie sind eingeloggt!");
+                    break; //wenn die Eingabe richtig ist wird eingeloggt quasi Methode erfolgreich beendet
+                } else {
+                    System.out.println("Falsches Passwort!");
+                    attempts++;//Anzahl der Versuche erhöht
+                }
+                if (attempts < maxAttempts) {//wenn die Anzahl der Versuche kleiner als maxAttempts ist
+                    System.out.println("Bitte versuchen Sie es erneut.");
+                } else {
+                    System.out.println("Sie haben die maximale Anzahl an Versuchen erreicht.\nIhr Konto wurde gesperrt!\nDas Programm wird beendet.");
+                    System.exit(0);
+                }
             }
         }
     }
-//Mitarbeiter suchen Funktion____________________________________________________________________________________________
+
+//Mitarbeiter suchen Funktion________________________________________________________________________________________________
     public static void searchEmployee(String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
         //String input ist das Eingabefeld für den Namen des gesuchten Mitarbeiters
         //throws FileNotFoundException heißt es einen Fehler wenn die Datei nicht gefunden wird
