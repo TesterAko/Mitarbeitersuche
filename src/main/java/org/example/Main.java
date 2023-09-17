@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class Main { //Hauptmenü
 
     //throws IOException-Klausel in einer Methodendeklaration in Java bedeutet, dass die Methode möglicherweise eine IOException auslösen kann
@@ -57,13 +58,15 @@ public class Main { //Hauptmenü
         }
         scannerEmployeeSearch.close();//Scanner wird geschlossen
     }
-//Intro_______________________________________________________________________________________________________________________
+
+    //Intro_______________________________________________________________________________________________________________________
     public static void intro() {
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
         //intro Menü
         System.out.println("Log In");//Log In
     }
-//Log In Funktion______________________________________________________________________________________________________________
+
+    //Log In Funktion______________________________________________________________________________________________________________
     public static void logIn() throws IOException {//implementierung log in methode
         FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
         Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
@@ -71,37 +74,47 @@ public class Main { //Hauptmenü
 
         while (scanner.hasNext()) {//solange scanner einen nächsten String hat
             jsonContent.append(scanner.nextLine());//wird der String in jsonContent hinzugefögt
-        }
+        } scanner.close();
 
-        JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
-        int maxAttempts = 3;//Maximale Anzahl an Passworteingaben festlegen !!!!
-        int attempts = 0;//Anzahl der Versuche
-        while (attempts < maxAttempts) {//solange die Anzahl der Versuche kleiner als maxAttempts ist
-            Scanner userInput = new Scanner(System.in);//Scanner för Eingabe
-            System.out.println("Benutzername: ");
-            String benutzername = userInput.nextLine();//Eingabe benutzername
-            System.out.println("Passwort: ");//Maximale Anzahl an Passworteingaben festlegen !!!!
-            int passwort = Integer.parseInt(userInput.nextLine());//Eingabe passwort
+            JSONObject json = new JSONObject(jsonContent.toString()); // JSon Object aus dem Content erstellt
+            int maxAttempts = 3;//Maximale Anzahl an Passworteingaben festlegen !!!!
+            int attempts = 0;//Anzahl der Versuche
+            while (attempts < maxAttempts) {//solange die Anzahl der Versuche kleiner als maxAttempts ist
+                Scanner userInput = new Scanner(System.in);//Scanner för Eingabe
+                System.out.println("Benutzername: ");
+                String benutzername = userInput.nextLine();//Eingabe benutzername
+                System.out.println("Passwort: ");
+                int passwort = Integer.parseInt(userInput.nextLine());//Eingabe passwort
 
-            if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
-                if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {//wenn die Eingabe richtig ist
-                    System.out.println("Sie sind eingeloggt!");
-                    break; //wenn die Eingabe richtig ist wird eingeloggt quasi Methode erfolgreich beendet
-                } else {
-                    System.out.println("Falsches Passwort!");
-                    attempts++;//Anzahl der Versuche erhöht
-                }
-                if (attempts < maxAttempts) {//wenn die Anzahl der Versuche kleiner als maxAttempts ist
-                    System.out.println("Bitte versuchen Sie es erneut.");
-                } else {
-                    System.out.println("Sie haben die maximale Anzahl an Versuchen erreicht.\nIhr Konto wurde gesperrt!\nDas Programm wird beendet.");
-                    System.exit(0);
+                if (json.has("Benutzername") && json.has("Passwort")) {//wenn die Daten in der json Datei vorhanden sind
+                    if (json.getString("Benutzername").equals(benutzername) && json.getInt("Passwort") == passwort) {//wenn die Eingabe richtig ist
+                        System.out.println("Sie sind eingeloggt!");
+                        break; //wenn die Eingabe richtig ist wird eingeloggt quasi Methode erfolgreich beendet
+                    } else {
+                        System.out.println("Falsches Passwort!");
+                        attempts++;//Anzahl der Versuche erhöht
+                    }
+                    if (attempts < maxAttempts) {//wenn die Anzahl der Versuche kleiner als maxAttempts ist
+                        System.out.println("Bitte versuchen Sie es erneut.");
+                    } else {
+                        System.out.println("Sie haben die maximale Anzahl an Versuchen erreicht.\nIhr Konto wurde gesperrt!\nNeues Passwort erstellen 'NEW' oder Programm beenden 'EXIT'?");
+                        String option = userInput.nextLine().toUpperCase();//Eingabe option
+                        switch (option) {
+                            case "NEW"://wenn NEW gedrückt wird
+                                createNewPassword();//neues Passwort wird erstellt
+                                break;
+                            case "EXIT"://wenn EXIT gedrückt wird
+                                System.out.println("Programm wird beendet.");
+                                System.exit(0);
+                                break;
+                        }
+                    }
                 }
             }
         }
-    }
 
-//Mitarbeiter suchen Funktion________________________________________________________________________________________________
+
+    //Mitarbeiter suchen Funktion________________________________________________________________________________________________
     public static void searchEmployee(String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
         //String input ist das Eingabefeld für den Namen des gesuchten Mitarbeiters
         //throws FileNotFoundException heißt es einen Fehler wenn die Datei nicht gefunden wird
@@ -141,7 +154,8 @@ public class Main { //Hauptmenü
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         }
     }
-//Mitarbeiter hinzufügen Funktion__________________________________________________________________________________________________
+
+    //Mitarbeiter hinzufügen Funktion__________________________________________________________________________________________________
     public static void addEmployer() throws IOException {
         try {
             //hinzufügen Mitarbeiter erstellen Funktion
@@ -156,7 +170,7 @@ public class Main { //Hauptmenü
             JSONArray jsonArray = new JSONArray(jsonContent.toString());//erstellt einen JSONArray aus dem StringBuffer
             Scanner userInput = new Scanner(System.in);
             System.out.println("Geben Sie den Namen des neuen Mitarbeiters ein:");
-            String name= userInput.nextLine();
+            String name = userInput.nextLine();
             System.out.println("Geben Sie das Alter des neuen Mitarbeiters ein:");
             String age = String.valueOf(Integer.parseInt(userInput.nextLine()));
             System.out.println("Geben Sie das Gehalt des neuen Mitarbeiters ein:");
@@ -190,6 +204,7 @@ public class Main { //Hauptmenü
             System.out.println("Fehler: " + e.getMessage());
         }
     }
+
     //delete Funktion _________________________________________________________________________________________________________
     public static void deleteEmployee(String input) throws IOException {//implementierung Löschen Mitarbeiter
         FileReader fileReader = new FileReader("src/main/resources/employees.json");//lies die Json Datei ein
@@ -216,23 +231,44 @@ public class Main { //Hauptmenü
         }
         //hier auch Schwachstelle nach löschung von Mitarbeitern, wenn nicht mehr vorhanden, dann lässt 2 Eingaben zu die schließlich ungÜltig sind
         //gelöst^^ durch Implementierung der == -1 in der Schleife unten, also wenn Mitarbeiter schon entfernt wurde kann nicht zurückgeben werden
-            if (indexToRemove != -1) {
-                //wenn indexToRemove nicht -1 ist, ist mitarbeiter noch da, kann gefunden werden
-                json.remove(indexToRemove);
-                //remove entfernt das Mitarbeiter aus dem Array
-                saveToJsonFile(json);
-                //saveToJsonFile wird aufgerufen Methode wird unten ausgeführt
-                System.out.println("Mitarbeiter wurde gelöscht");
-                System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
-                Scanner scannerEmployeeSearch = new Scanner(System.in);
-                //Hauptmenü wird neu gestartet
-            } if (indexToRemove == -1) {
-                //wenn indexToRemove -1 ist, wurde mitarbeiter schon entfernt kann nicht gefunden werden
-                System.out.println("Mitarbeiter nicht gefunden");
+        if (indexToRemove != -1) {
+            //wenn indexToRemove nicht -1 ist, ist mitarbeiter noch da, kann gefunden werden
+            json.remove(indexToRemove);
+            //remove entfernt das Mitarbeiter aus dem Array
+            saveToJsonFile(json);
+            //saveToJsonFile wird aufgerufen Methode wird unten ausgeführt
+            System.out.println("Mitarbeiter wurde gelöscht");
+            System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
+            Scanner scannerEmployeeSearch = new Scanner(System.in);
+            //Hauptmenü wird neu gestartet
+        }
+        if (indexToRemove == -1) {
+            //wenn indexToRemove -1 ist, wurde mitarbeiter schon entfernt kann nicht gefunden werden
+            System.out.println("Mitarbeiter nicht gefunden");
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
         }
     }
+
+    //Passwort erstellen Funktion _________________________________________________________________________________________________________
+   public static void createNewPassword() throws IOException {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Bitte geben Sie ein neues Passwort ein:");
+        int newPassword = userInput.nextInt();
+        System.out.println("Passwort wurde erstellt");
+
+        //Ein neues JSON Objekt wird erstellt
+        JSONObject newAdminData = new JSONObject();
+        newAdminData.put("Benutzername", "IhrBenutzername");
+        newAdminData.put("Passwort: ", newPassword);
+        //Hier werden die neuen Daten in die JSON Objekt gespeichert
+        System.out.println("Ihre aktuellen Daten : \nBenutzername: " + newAdminData.get("Benutzername: ") + "\nPasswort: " + newAdminData.get("Passwort: "));
+
+        saveAdminToJsonFile(newAdminData);
+
+        logIn();
+    }
+
     //Json Überschreiben Funktion _________________________________________________________________________________________________________
     private static void saveToJsonFile(JSONArray json) throws IOException {
         //Die throws IOException-Klausel zeigt an, dass möglicherweise Ausnahmen im Zusammenhang mit Ein- und Ausgabe auftreten können.
@@ -242,5 +278,14 @@ public class Main { //Hauptmenü
         //Funktion zur überschreibung der JSON Datei
         fileWriter.write(json.toString());//löscht den String aus dem JSON Array in die JSON Datei
         fileWriter.close();//Abschluss der Überschreibung
+    }
+
+    private static void saveAdminToJsonFile(JSONObject jsonData) throws IOException {
+        try (FileWriter fileWriter = new FileWriter("src/main/resources/admin.json")) {
+            // JSON-Objekt in die Datei schreiben
+            fileWriter.write(jsonData.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
