@@ -114,7 +114,7 @@ public class Main { //Hauptmenü
     }
 
         //Mitarbeiter suchen Funktion________________________________________________________________________________________________
-        public static void searchEmployee (String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
+        public static String searchEmployee (String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
             //String input ist das Eingabefeld für den Namen des gesuchten Mitarbeiters
             //throws FileNotFoundException heißt es einen Fehler wenn die Datei nicht gefunden wird
 
@@ -152,6 +152,7 @@ public class Main { //Hauptmenü
                 System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");//info nochmal suchen?
                 Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
             }
+            return input;
         }
 
         //Mitarbeiter hinzufügen Funktion__________________________________________________________________________________________________
