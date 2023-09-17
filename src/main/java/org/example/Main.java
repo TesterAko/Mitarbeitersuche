@@ -62,12 +62,13 @@ public class Main { //Hauptmenü
     //Intro_______________________________________________________________________________________________________________________
     public static void intro() {
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
-        //intro Menü
-        System.out.println("Log In");//Log In
+        //Intro Menü
+        System.out.println("Log In");
+
     }
 
     //Log In Funktion______________________________________________________________________________________________________________
-    public static void logIn() throws IOException {//implementierung log in methode
+    public static boolean logIn() throws IOException {//implementierung log in methode
         FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
         Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
         StringBuffer jsonContent = new StringBuffer();//StringBuffer erstellen aus jsonContent
@@ -111,6 +112,7 @@ public class Main { //Hauptmenü
                 }
             }
         }
+        return false;
     }
 
         //Mitarbeiter suchen Funktion________________________________________________________________________________________________

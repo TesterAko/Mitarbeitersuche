@@ -1,6 +1,12 @@
 package org.example;
 
-import org.junit.Assert;
+import org.junit.Assert;//
+/*org.junit.Assert: Hier wird die Klasse Assert aus dem Paket org.junit importiert.
+Die Assert-Klasse enthält eine Reihe von statischen Methoden, die in JUnit-Tests häufig verwendet werden, um Assertions durchzuführen und Ergebnisse zu überprüfen.
+Zum Beispiel verwenden Sie Assert.assertEquals(), um zu überprüfen, ob zwei Werte gleich sind.
+Andere Methoden wie assertTrue(), assertFalse(), assertNotNull(), usw., stehen ebenfalls zur Verfügung,
+um verschiedene Arten von Prüfungen durchzuführen.
+ */
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -9,37 +15,24 @@ public class SearchEmployeeTest {
 
     @Test
     public void testSearchEmployee() throws FileNotFoundException {
-        // Hier können Sie die searchEmployee-Methode aufrufen und die Ausgaben überprüfen
-        // Erstellen Sie dazu ein Main-Objekt oder verwenden Sie eine andere Methode, um die Methode zu testen.
-        // Vergleichen Sie die tatsächlichen Ergebnisse mit den erwarteten Ergebnissen mithilfe von Assertions.
+        // searchEmployee-Methode durchführen und die Ausgaben überprüfen
 
-        Main main = new Main(); // Erstellen Sie ein Main-Objekt
+        Main main = new Main(); //Die zu testende Methode aus Main Methode holen
 
+
+        String expectedName = "Jonas Meyer";
         // Annahme: Hier sollte ein Mitarbeiter mit dem Namen "Jonas" gefunden werden
-        String expectedName = "Jonas";
-        // Rufen Sie die Methode auf und speichern Sie das Ergebnis
-        String actualName = main.searchEmployee("Jonas");
 
-        // Überprüfen Sie, ob das tatsächliche Ergebnis mit dem erwarteten Ergebnis übereinstimmt
+        String actualName = main.searchEmployee("Jonas Meyer");
+        // führe Methode durch und zeige aktuelles Ergebnis
+
         Assert.assertEquals(expectedName, actualName);
+        //überprüfe ob beide Ergebnisse zusammenstimmen
     }
 }
 
 
 
-
-
-
-        /*Führen Sie die Tests aus:
-
-        Verwenden Sie Ihre IDE oder Ihr Build-Tool, um die JUnit-Tests auszuführen.
-        Die Tests sollten die in Ihren Testfällen definierten Assertions überprüfen und Ihnen mitteilen, ob Ihre Funktionen wie erwartet funktionieren.
-        Wiederholen Sie diese Schritte für andere Methoden, die Sie testen möchten.
-
-        Es ist wichtig zu beachten, dass Ihre Klassen und Methoden für den Test zugänglich sein sollten. Sie können dies erreichen, indem Sie die Sichtbarkeit von Klassen oder Methoden entsprechend ändern oder Getter-Methoden hinzufügen, wenn dies erforderlich ist.
-
-        Denken Sie daran, dass Unit-Tests dazu beitragen, die Qualität Ihres Codes sicherzustellen und mögliche Fehler frühzeitig zu erkennen. Sie sollten verschiedene Szenarien testen, einschließlich derer, die zu Fehlern führen könnten, und sicherstellen, dass Ihre Funktionen korrekt reagieren.
-*/
 
 
 
