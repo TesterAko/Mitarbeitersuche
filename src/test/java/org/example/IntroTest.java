@@ -37,7 +37,7 @@ public class IntroTest extends Main {
             Main.intro();
 
             // Erfassen der Ausgabe in einem String
-            String introOutput = outContent.toString().trim();
+            String introOutput = outContent.toString().trim();// trim() - Methode, die den String auf den Anfang und Ende entfernt
 
             // Erwartete Ausgabe aus der Intro-Methode
             String expectedOutput = "Willkommen zum Mitarbeiterverwaltungssystem\n Log In";
