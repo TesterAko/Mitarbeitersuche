@@ -1,12 +1,9 @@
 package org.example;
 
-import org.junit.jupiter.api.AfterEach;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class deleteEmployee extends Main {
-
-    @AfterEach
-    void tearDown() {
+    @Test
+    void testDeleteEmployee() {
     }
 }
