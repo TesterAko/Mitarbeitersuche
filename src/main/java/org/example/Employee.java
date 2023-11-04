@@ -5,11 +5,20 @@ public class Employee {
     private int age;
     private double salary;
 
-    public Employee(String name, int age, double salary) {
+    private String username;
+    private int password;
+    private String authority;
+
+    public Employee(String name, int age, double salary, String username, int password, String authority) {
         this.name = name;
         this.age = age;
         this.salary = salary;
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
     }
+
+
 
     public String getName() {
         return name;
@@ -19,7 +28,7 @@ public class Employee {
         return age;
     }
 
-    public double getSalary(){
+    public double getSalary() {
         return salary;
     }
 
@@ -31,7 +40,7 @@ public class Employee {
         this.age = age;
     }
 
-    public void setSalary(double salary){
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
@@ -44,9 +53,7 @@ public class Employee {
                 '}';
     }
 
-    public void printEmployee() {
-        System.out.println(toString());
+    public void printEmployeeData () {
+        System.out.println("Username: " + username + " Password: " + password + "Authority: " + authority);
     }
-
-
 }

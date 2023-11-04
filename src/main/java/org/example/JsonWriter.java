@@ -6,4 +6,5 @@ import java.io.FileNotFoundException;
 
 public interface JsonWriter {
     void writeJsonFile(JSONArray jsonArray, String fileName) throws FileNotFoundException;
+
 }

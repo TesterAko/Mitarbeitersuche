@@ -20,28 +20,33 @@ public class Main { //Hauptmenü
 
     public static void main(String[] args) throws IOException {
         intro();//Intro ausführen
-        logIn();//log in ausführen
+        //logIn();//log in ausführen
         System.out.println("Hauptmenü");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie YES ein");
         System.out.println("Wenn Sie einen Mitarbeiter löschen möchten, geben Sie DELETE ein");
         System.out.println("Wenn Sie einen Mitarbeiter hinzufügen möchten, geben Sie ADD ein");
         System.out.println("Wenn Sie den Vorgang abbrechen möchten, geben Sie EXIT ein");
 
-        Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
+        Scanner scanner = new Scanner(System.in);//Anfangen des Scanner-Objekts
         boolean isRunning = true;//startet das Programmm solange true ist
         while (isRunning) {
-            String option = scannerEmployeeSearch.nextLine().toUpperCase();//option ist die Eingabe des Benutzer
+            String option = scanner.next().toUpperCase();//option ist die Eingabe des Benutzer
             //scannerEmployeeSearch.nextLine() gibt die Eingabe des Benutzers wieder
             //.toUpperCase() gibt die Eingabe in Großbuchstaben wieder
             switch (option) {//option wird gestartet
+
                 case "YES" -> {//wenn ja wird das employeeName gestartet
                     System.out.println("Wie heißt der Mitarbeiter, der gesucht werden soll?");
-                    String employeeName = scannerEmployeeSearch.nextLine();
-                    searchEmployee(employeeName);//employeeName wird öffnet und gesucht
+                    String employeeName = scanner.next();
+                    try {
+                        EmployeeManagement.searchingEmployee(employeeName);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 case "DELETE" -> {
                     System.out.println("Wie heißt der Mitarbeiter, der gelöscht werden soll?");
-                    String deleteEmployee = scannerEmployeeSearch.nextLine();
+                    String deleteEmployee = scanner.nextLine();
                     deleteEmployee(deleteEmployee);
                 }
                 case "ADD" -> {
@@ -56,7 +61,7 @@ public class Main { //Hauptmenü
                         System.out.println("Ungültige Eingabe. Bitte geben Sie 'YES', 'ADD', 'DELETE' oder 'EXIT' ein.");
             }
         }
-        scannerEmployeeSearch.close();//Scanner wird geschlossen
+        scanner.close();//Scanner wird geschlossen
     }
 
     //Intro_______________________________________________________________________________________________________________________
@@ -68,7 +73,7 @@ public class Main { //Hauptmenü
     }
 
     //Log In Funktion______________________________________________________________________________________________________________
-    public static boolean logIn() throws IOException {//implementierung log in methode
+    /*public static boolean logIn() throws IOException {//implementierung log in methode
         FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
         Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
         StringBuffer jsonContent = new StringBuffer();//StringBuffer erstellen aus jsonContent
@@ -113,7 +118,7 @@ public class Main { //Hauptmenü
             }
         }
         return false;
-    }
+    }*/
 
     //Mitarbeiter suchen Funktion________________________________________________________________________________________________
     public static String searchEmployee(String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
@@ -284,7 +289,7 @@ public class Main { //Hauptmenü
             System.out.println("Ihre Daten wurden gespeichert");
 
             System.out.println("Bitte loggen Sie sich nun ein:");
-            logIn();
+            //logIn();
         }
 
         //Json Überschreiben Funktion admin.json_________________________________________________________________________________________________________
