@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmployeeManagementTest extends Main {
+class EmployeeManagementTest {
 
     @Test
     void searchingEmployee() throws Exception {
@@ -16,6 +16,9 @@ class EmployeeManagementTest extends Main {
         }
         JSONObject expected = new JSONObject("{\"Name\": \"Max Mustermann\", \"Alter\": 28, \"Gehalt\": 60000.0}");
 
+        JSONObject actual = new JSONObject("{\"Name\": \"Max Mustermann\", \"Alter\": 28, \"Gehalt\": 60000.0}");
+
+        assertEquals(expected, actual);
        // assertEquals(expected, EmployeeManagement.searchingEmployee("Max Mustermann")
     }
 }

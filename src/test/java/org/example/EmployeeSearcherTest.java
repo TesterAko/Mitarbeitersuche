@@ -10,7 +10,7 @@ class EmployeeSearcherTest {
 
     @Test
     public void testSearchEmployee() throws Exception {
-
+        //positive Test
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
         String existingEmployeeInput = "Max Mustermann";
         JSONArray jsonArray = new JSONArray("[{\"Name\": \"Max Mustermann\", \"Alter\": 28, \"Gehalt\": 60000.0}]");
@@ -22,14 +22,13 @@ class EmployeeSearcherTest {
         assertEquals(expected.toString(), actual.toString());
 
         System.out.println("======================================================================");
-
+        //negative Test
         String notexistingEmployeeInput = "Maxi Mustermann";
         jsonArray = null;
 
         expected = null;
 
         assertEquals(expected, employeeSearcher.searchEmployee(jsonArray, notexistingEmployeeInput));
-
 
     }
 }
