@@ -1,7 +1,10 @@
 package org.example;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EmployeeSearcherTest extends Main {
 
@@ -10,12 +13,13 @@ class EmployeeSearcherTest extends Main {
 
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
         String existingEmployeeInput = "Max Mustermann";
-        JSONArray jsonArray = null;
-        employeeSearcher.searchEmployee(jsonArray, existingEmployeeInput);
+        JSONArray jsonArray = new JSONArray("[{\"Name\": \"Max Mustermann\", \"Alter\": 28, \"Gehalt\": 60000.0}]");
 
-        System.out.println("===========================================");
+        JSONObject expected = new JSONObject("{\"Name\": \"Max Mustermann\", \"Alter\": 28, \"Gehalt\": 60000.0}");
 
-        String nonExistingEmployeeInput = "John Doe";
-        employeeSearcher.searchEmployee(jsonArray, nonExistingEmployeeInput);
+        JSONObject actual = employeeSearcher.searchEmployee(jsonArray, existingEmployeeInput);
+
+        assertEquals(expected.toString(), actual.toString());
+
     }
 }

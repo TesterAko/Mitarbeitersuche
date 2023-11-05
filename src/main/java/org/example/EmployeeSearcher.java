@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class EmployeeSearcher {
 
-    public void searchEmployee(JSONArray jsonArray, String input) throws FileNotFoundException {
+    public JSONObject searchEmployee(JSONArray jsonArray, String input) throws FileNotFoundException {
         JsonReader jsonReader = new DefaultJsonReaderEmployeeData();
         JSONArray json = jsonReader.readJsonFile("src/main/resources/employees.json");
         JSONObject result = null;//erstellt einen JSONObject und null ist das erste Mitarbeiter
@@ -37,5 +37,6 @@ public class EmployeeSearcher {
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");//info nochmal suchen?
             Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         }
+        return result;
     }
 }

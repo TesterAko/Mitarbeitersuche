@@ -12,7 +12,6 @@ public class EmployeeManagement {
         employeeSearcher.searchEmployee(jsonArray, input);
 
 
-    }
 //findet Max Mustermann nicht obwohl Tests erfolgreich
-
+    }
 }
