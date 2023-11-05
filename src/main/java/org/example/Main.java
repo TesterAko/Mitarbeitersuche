@@ -38,11 +38,12 @@ public class Main { //Hauptmenü
                 case "YES" -> {//wenn ja wird das employeeName gestartet
                     System.out.println("Wie heißt der Mitarbeiter, der gesucht werden soll?");
                     String employeeName = scanner.next();
-                    try {
+                   /* try {
                         EmployeeManagement.searchingEmployee(employeeName);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
+                }*/
                 }
                 case "DELETE" -> {
                     System.out.println("Wie heißt der Mitarbeiter, der gelöscht werden soll?");

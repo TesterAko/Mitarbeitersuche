@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EmployeeSearcherTest extends Main {
+class EmployeeSearcherTest {
 
     @Test
     public void testSearchEmployee() throws Exception {
@@ -20,6 +20,16 @@ class EmployeeSearcherTest extends Main {
         JSONObject actual = employeeSearcher.searchEmployee(jsonArray, existingEmployeeInput);
 
         assertEquals(expected.toString(), actual.toString());
+
+        System.out.println("======================================================================");
+
+        String notexistingEmployeeInput = "Maxi Mustermann";
+        jsonArray = null;
+
+        expected = null;
+
+        assertEquals(expected, employeeSearcher.searchEmployee(jsonArray, notexistingEmployeeInput));
+
 
     }
 }
