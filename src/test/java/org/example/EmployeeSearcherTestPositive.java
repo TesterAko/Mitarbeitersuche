@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EmployeeSearcherTest {
+class EmployeeSearcherTestPositive {
 
     @Test
-    public void testSearchEmployee() throws Exception {
+    public void searchExistingEmployee() throws Exception {
         //positive Test
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
         String existingEmployeeInput = "Max Mustermann";
@@ -20,15 +20,6 @@ class EmployeeSearcherTest {
         JSONObject actual = employeeSearcher.searchEmployee(jsonArray, existingEmployeeInput);
 
         assertEquals(expected.toString(), actual.toString());
-
-        System.out.println("======================================================================");
-        //negative Test
-        String notexistingEmployeeInput = "Maxi Mustermann";
-        jsonArray = null;
-
-        expected = null;
-
-        assertEquals(expected, employeeSearcher.searchEmployee(jsonArray, notexistingEmployeeInput));
 
     }
 }
