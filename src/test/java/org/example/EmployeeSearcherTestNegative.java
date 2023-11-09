@@ -13,12 +13,12 @@ class EmployeeSearcherTestNegative {
         //positive Test
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
         String notExistingEmployeeInput = "Maxi Mustermann";
-        JSONArray jsonArray = null;
+        JSONArray actual = null;
 
         JSONObject expected = null;
 
 
-        assertEquals(expected, employeeSearcher.searchEmployee(jsonArray, notExistingEmployeeInput));
+        assertEquals(expected, employeeSearcher.searchEmployee(actual, notExistingEmployeeInput));
 
     }
 }
