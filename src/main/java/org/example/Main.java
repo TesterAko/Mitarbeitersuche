@@ -18,7 +18,7 @@ public class Main { //Hauptmenü
     // aber sie behandelt den Fehler nicht selbst. Stattdessen wird der Fehler an die Methode weitergegeben, die diese Methode aufruft.
     // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         intro();//Intro ausführen
         //logIn();//log in ausführen
         System.out.println("Hauptmenü");
@@ -30,20 +30,14 @@ public class Main { //Hauptmenü
         Scanner scanner = new Scanner(System.in);//Anfangen des Scanner-Objekts
         boolean isRunning = true;//startet das Programmm solange true ist
         while (isRunning) {
-            String option = scanner.next().toUpperCase();//option ist die Eingabe des Benutzer
+            String option = scanner.nextLine().toUpperCase();//option ist die Eingabe des Benutzer
             //scannerEmployeeSearch.nextLine() gibt die Eingabe des Benutzers wieder
             //.toUpperCase() gibt die Eingabe in Großbuchstaben wieder
             switch (option) {//option wird gestartet
-
                 case "YES" -> {//wenn ja wird das employeeName gestartet
                     System.out.println("Wie heißt der Mitarbeiter, der gesucht werden soll?");
-                    String employeeName = scanner.next();
-                   /* try {
-                        EmployeeManagement.searchingEmployee(employeeName);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }*/
+                    String employeeName = scanner.nextLine();
+                    EmployeeManagement.searchingEmployee(employeeName);
                 }
                 case "DELETE" -> {
                     System.out.println("Wie heißt der Mitarbeiter, der gelöscht werden soll?");

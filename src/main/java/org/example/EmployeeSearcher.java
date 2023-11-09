@@ -3,12 +3,11 @@ package org.example;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class EmployeeSearcher {
 
-    public JSONObject searchEmployee(JSONArray jsonArray, String input) throws FileNotFoundException {
+    public JSONObject searchEmployee(JSONArray jsonArray, String input) {
         JsonReader jsonReader = new DefaultJsonReaderEmployeeData();
         JSONArray json = jsonReader.readJsonFile("src/main/resources/employees.json");
         JSONObject result = null;//erstellt einen JSONObject und null ist das erste Mitarbeiter

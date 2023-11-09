@@ -2,7 +2,6 @@ package org.example;
 
 import org.json.JSONArray;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class DefaultJsonReaderEmployeeData implements JsonReader {
 
     @Override
-    public JSONArray readJsonFile(String filePath) throws FileNotFoundException {
+    public JSONArray readJsonFile(String filePath) {
         JSONArray jsonArray = new JSONArray();
         try (FileReader fileReader = new FileReader("src/main/resources/employees.json");
             Scanner scanner = new Scanner(fileReader)) {
