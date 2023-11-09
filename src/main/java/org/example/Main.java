@@ -23,8 +23,10 @@ public class Main { //Hauptmenü
     // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
 
     public static void main(String[] args) throws Exception {
-
-        MitarbeiterRepository mitarbeiterRepository = new MitarbeiterRepositoryJsonFile();
+        JsonReader jsonReader = new DefaultJsonReaderEmployeeData();
+        JSONArray jsonaArray = jsonReader.readJsonFile("src/main/resources/employees.json");
+        
+        MitarbeiterRepository mitarbeiterRepository = new MitarbeiterRepositoryJsonFile(jsonaArray);
         // MitarbeiterRepository mitarbeiterRepository = new MitarbeiterRepositoryMySql();
         MitarbeiterService mitarbeiterService = new MitarbeiterService(mitarbeiterRepository);
          MitarbeiterController controller = new MitarbeiterController(mitarbeiterService);

@@ -1,20 +1,14 @@
 package org.example.repository;
 
-import java.util.Scanner;
-
-import org.example.DefaultJsonReaderEmployeeData;
-import org.example.JsonReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MitarbeiterRepositoryJsonFile implements MitarbeiterRepository{
 
-    private final JsonReader jsonReader;
     private final JSONArray json;
 
-    public MitarbeiterRepositoryJsonFile(){
-        this.jsonReader = new DefaultJsonReaderEmployeeData();
-        this.json = jsonReader.readJsonFile("src/main/resources/employees.json");
+    public MitarbeiterRepositoryJsonFile(JSONArray json){
+        this.json = json;
     }
 
     public JSONObject findByName(String name){
