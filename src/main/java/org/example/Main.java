@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.controller.MitarbeiterController;
+import org.example.repository.MitarbeiterRepositoryJsonFile;
+import org.example.repository.MitarbeiterRepository;
+import org.example.service.MitarbeiterService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,7 +23,18 @@ public class Main { //Hauptmenü
     // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
 
     public static void main(String[] args) throws Exception {
-        intro();//Intro ausführen
+
+        MitarbeiterRepository mitarbeiterRepository = new MitarbeiterRepositoryJsonFile();
+        // MitarbeiterRepository mitarbeiterRepository = new MitarbeiterRepositoryMySql();
+        MitarbeiterService mitarbeiterService = new MitarbeiterService(mitarbeiterRepository);
+         MitarbeiterController controller = new MitarbeiterController(mitarbeiterService);
+
+       //HttpInputController controller = new HttpInputController(mitarbeiterService);
+
+       controller.readOptions();
+        //controller.getMitarbeiter("Max Musterman");
+
+        /* intro();//Intro ausführen
         //logIn();//log in ausführen
         System.out.println("Hauptmenü");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie YES ein");
@@ -57,15 +72,17 @@ public class Main { //Hauptmenü
             }
         }
         scanner.close();//Scanner wird geschlossen
+        */
     }
 
     //Intro_______________________________________________________________________________________________________________________
-    public static void intro() {
+   /*  public static void intro() {
         System.out.println("Willkommen zum Mitarbeiterverwaltungssystem");
         //Intro Menü
         System.out.println("Log In");
 
     }
+    */
 
     //Log In Funktion______________________________________________________________________________________________________________
     /*public static boolean logIn() throws IOException {//implementierung log in methode
