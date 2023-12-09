@@ -3,6 +3,7 @@ package org.example;
 import org.json.JSONArray;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -24,5 +25,15 @@ public class DefaultJsonReaderEmployeeData implements JsonReader {
             throw new RuntimeException(e);
         }
         return jsonArray;
+    }
+
+    static void saveToJsonFile(JSONArray json) throws IOException {
+        //Die throws IOException-Klausel zeigt an, dass möglicherweise Ausnahmen im Zusammenhang mit Ein- und Ausgabe auftreten können.
+        //implementierung von saveToJson
+        //aktualisiert die Daten von Json File
+        FileWriter fileWriter = new FileWriter("src/main/resources/employees.json");
+        //Funktion zur überschreibung der JSON Datei
+        fileWriter.write(json.toString());//löscht den String aus dem JSON Array in die JSON Datei
+        fileWriter.close();//Abschluss der Überschreibung
     }
 }

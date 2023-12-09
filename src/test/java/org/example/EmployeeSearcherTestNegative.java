@@ -11,6 +11,7 @@ class EmployeeSearcherTestNegative {
     @Test
     public void searchNotExistingEmployee() throws Exception {
         //positive Test
+
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
         String notExistingEmployeeInput = "Maxi Mustermann";
         JSONArray actual = null;

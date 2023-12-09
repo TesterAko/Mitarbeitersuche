@@ -3,8 +3,6 @@ package org.example;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Scanner;
-
 public class EmployeeSearcher {
 
     public JSONObject searchEmployee(JSONArray jsonArray, String input) {
@@ -30,11 +28,9 @@ public class EmployeeSearcher {
         }
         if (result != null) {//wenn result nicht null ist, gib es aus
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");//frage ob  man noch weiter suchen will
-            Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         } else {
             System.out.println("Mitarbeiter nicht gefunden");//info mitarbeiter nicht gefunden
             System.out.println("Wollen Sie nochmal suchen? YES, ADD, DELETE oder EXIT");//info nochmal suchen?
-            Scanner scannerEmployeeSearch = new Scanner(System.in);//Anfangen des Scanner-Objekts
         }
         return result;
     }

@@ -9,8 +9,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static org.example.DefaultJsonReaderEmployeeData.saveToJsonFile;
+import static org.example.EmployeeManagement.deleteEmployee;
+
 
 public class Main { //Hauptmenü
+
+
 
     //throws IOException-Klausel in einer Methodendeklaration in Java bedeutet, dass die Methode möglicherweise eine IOException auslösen kann
     // ist eine Java-Ausnahme (Exception) und steht für "Input/Output Exception". Sie tritt auf, wenn ein Fehler beim Lesen oder Schreiben von Dateien oder beim Arbeiten mit Ein- oder Ausgabeoperationen auftritt
@@ -19,7 +24,7 @@ public class Main { //Hauptmenü
     // das bedeutet, dass der Aufrufer dieser Methode dafür verantwortlich ist, den Fehler zu behandeln
 
     public static void main(String[] args) throws Exception {
-        intro();//Intro ausführen
+       // intro();//Intro ausführen
         //logIn();//log in ausführen
         System.out.println("Hauptmenü");
         System.out.println("Wenn Sie nach einem Mitarbeiter suchen möchten, geben Sie YES ein");
@@ -46,7 +51,7 @@ public class Main { //Hauptmenü
                 }
                 case "ADD" -> {
                     System.out.println("Bitte geben Sie die Daten ein");
-                    addEmployer();
+                   EmployeeManagement.addEmployee;
                 }
                 case "EXIT" -> {
                     System.out.println("Das Programm wird beendet.");
@@ -68,7 +73,7 @@ public class Main { //Hauptmenü
     }
 
     //Log In Funktion______________________________________________________________________________________________________________
-    /*public static boolean logIn() throws IOException {//implementierung log in methode
+    public static boolean logIn() throws IOException {//implementierung log in methode
         FileReader fileReader = new FileReader("src/main/resources/admin.json");//liest die Daten aus der aus der admin.json Datei
         Scanner scanner = new Scanner(fileReader);//erstellt einen Scanner mit dem FileReader
         StringBuffer jsonContent = new StringBuffer();//StringBuffer erstellen aus jsonContent
@@ -113,7 +118,7 @@ public class Main { //Hauptmenü
             }
         }
         return false;
-    }*/
+    }
 
     //Mitarbeiter suchen Funktion________________________________________________________________________________________________
     public static String searchEmployee(String input) throws FileNotFoundException {//searchEmployee wird aufgerufen
@@ -210,7 +215,7 @@ public class Main { //Hauptmenü
                 System.out.println("Fehler: " + e.getMessage());
             }
         }
-
+/*
         //delete Funktion _________________________________________________________________________________________________________
         public static void deleteEmployee (String input) throws IOException {//implementierung Löschen Mitarbeiter
             FileReader fileReader = new FileReader("src/main/resources/employees.json");//lies die Json Datei ein
@@ -255,8 +260,8 @@ public class Main { //Hauptmenü
                 Scanner scannerEmployeeSearch = new Scanner(System.in);//Hauptmenü wird neu gestartet
             }
         }
-
-        //Json überschreiben Mitarbeiter______________________________________________________________________________________________________
+*/
+        /*//Json überschreiben Mitarbeiter______________________________________________________________________________________________________
         private static void saveToJsonFile (JSONArray json) throws IOException {
             //Die throws IOException-Klausel zeigt an, dass möglicherweise Ausnahmen im Zusammenhang mit Ein- und Ausgabe auftreten können.
             //implementierung von saveToJson
@@ -266,7 +271,7 @@ public class Main { //Hauptmenü
             fileWriter.write(json.toString());//löscht den String aus dem JSON Array in die JSON Datei
             fileWriter.close();//Abschluss der Überschreibung
         }
-
+*/
         //Passwort erstellen Funktion _________________________________________________________________________________________________________
         public static void createNewPassword () throws IOException {
             Scanner userInput = new Scanner(System.in);

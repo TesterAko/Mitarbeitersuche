@@ -11,4 +11,20 @@ public class EmployeeManagement {
         EmployeeSearcher employeeSearcher = new EmployeeSearcher();
         return employeeSearcher.searchEmployee(jsonArray, input);
     }
+
+    public static JSONObject deleteEmployee(String input)  {
+        JsonReader jsonReader = new DefaultJsonReaderEmployeeData();
+        JSONArray jsonArray = jsonReader.readJsonFile("src/main/resources/employees.json");
+
+        EmployeeDeleter employeeDeleter = new EmployeeDeleter();
+        return employeeDeleter.deleteEmployee(jsonArray, input);
+    }
+
+    public static JSONObject addEmployee(String userInput) {
+        JsonReader jsonReader = new DefaultJsonReaderEmployeeData();
+        JSONArray jsonArray = jsonReader.readJsonFile("src/main/resources/employees.json");
+
+        EmployeeAdder employeeAdder = new EmployeeAdder();
+        return employeeAdder.addEmployee(jsonArray, userInput);
+    }
 }
